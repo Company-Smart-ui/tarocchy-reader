@@ -1,9 +1,7 @@
-import logo from "./logo.svg";
+
 import "./App.css";
-import "./Styles/Styles.css";
 import { useEffect } from "react";
 
-import ReaderSingle from "./Screens/ReaderSingle";
 import Readers from "./Screens/Readers";
 
 import { events } from "./ServerCommunication";

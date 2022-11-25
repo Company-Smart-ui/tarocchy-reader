@@ -1,4 +1,4 @@
-import "../Styles/Styles.css";
+
 import globalThis from "../Global";
 import { events } from "../ServerCommunication";
 
@@ -68,11 +68,10 @@ export default function Header(data) {
             <div id="category-container">
                 {categories.map((item, index) => {
                     return (
-                        <>
-                            <Category category={item} />
-                            {/*index !== categories.length - 1 && <p>|</p>*/}
-                        </>
+
+                            <Category key={index} category={item} />
                     );
+                    {/*index !== categories.length - 1 && <p>|</p>*/}
                 })}
             </div>
         </div>

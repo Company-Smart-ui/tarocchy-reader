@@ -1,10 +1,11 @@
-import "../Styles/Styles.css";
+
 import StarRatings from "react-star-ratings";
 import { useRef, useEffect, useState } from "react";
 import { events, userStatus } from "../ServerCommunication";
 import globalThis from "../Global";
 
 import ClipLoader from "react-spinners/ClipLoader";
+import {Buttons} from "./buttons/buttons";
 
 var requested = false;
 
@@ -55,11 +56,11 @@ export default function Reader(data) {
     }
 
     function agentDetailsResponse(data) {
-        //console.log(data);
         if (data.agentPIN === PIN) {
             //console.log(PIN);
             setAgentDetails({
                 agentName: data.username,
+                languages:data.languages,
                 agentPIN: data.agentPIN,
                 bio: data.bio,
                 specialties: data.specialties,
@@ -110,19 +111,14 @@ export default function Reader(data) {
         //navigate("/reader", { state: { agentDetails: agentDetails, agentImage: imageSrc, PIN: PIN } });
     }
 
-    function openChat() {
-        document.cookie = `pin=${PIN}`;
-        window.location.href = `/chat?pin=${PIN}`;
-    }
-    function openCall() {
-        window.location.href = `/chat?redirect=call&pin=${PIN}`;
-    }
+
+
     return (
         <>
             {show ? (
-                <div className="reader-container">
+                <div onClick={selectReader} tabIndex={0} className="reader-container">
                     <div className="reader-content">
-                        <p className="reader-name" onClick={selectReader}>
+                        <p className="reader-name" >
                             {agentDetails.agentName}
                         </p>
                         <p className="reader-desc">{agentDetails.bio}</p>
@@ -133,59 +129,16 @@ export default function Reader(data) {
                     </div>
                     <div className="reader-image-content">
                         {imageSrc !== "" ? (
-                            <img src={imageSrc} className="reader-image" onClick={selectReader}></img>
+                            <img src={imageSrc} className="reader-image"  />
                         ) : (
                             <div className="loader-container">
                                 <ClipLoader color={"#000000"} size={"3vmin"} />
                             </div>
                         )}
-                        <div className="reader-button-container">
-                            {status === userStatus.online && (
-                                <button className="reader-button user-online" onClick={openChat}>
-                                    CHAT NOW
-                                </button>
-                            )}
-                            {status === userStatus.offline && (
-                                <button className="reader-button user-offline" onClick={openChat}>
-                                    OFFLINE
-                                </button>
-                            )}
-                            {status === userStatus.busy && (
-                                <button className="reader-button user-busy" onClick={openChat}>
-                                    BUSY
-                                </button>
-                            )}
-                            {status === userStatus.away && (
-                                <button className="reader-button user-away" onClick={openChat}>
-                                    AWAY
-                                </button>
-                            )}
-                            {phoneStatus === userStatus.online && (
-                                <button className="reader-button user-online" onClick={openCall}>
-                                    CALL NOW
-                                </button>
-                            )}
-                            {phoneStatus === userStatus.offline && (
-                                <button className="reader-button user-offline" onClick={openCall}>
-                                    OFFLINE
-                                </button>
-                            )}
-                            {phoneStatus === userStatus.busy && (
-                                <button className="reader-button user-busy" onClick={openCall}>
-                                    BUSY
-                                </button>
-                            )}
-                            {phoneStatus === userStatus.away && (
-                                <button className="reader-button user-away" onClick={openCall}>
-                                    AWAY
-                                </button>
-                            )}
-                            {phoneStatus === null && (
-                                <button className="reader-button user-offline" onClick={openCall}>
-                                    OFFLINE
-                                </button>
-                            )}
-                        </div>
+
+                        <Buttons pi={PIN} status={status} phoneStatus={phoneStatus}/>
+
+
                     </div>
                 </div>
             ) : (

@@ -1,4 +1,4 @@
-import "../Styles/Styles.css";
+
 import { useEffect, useState } from "react";
 import { events, userStatus } from "../ServerCommunication";
 import globalThis from "../Global";

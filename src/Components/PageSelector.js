@@ -1,6 +1,3 @@
-import "../Styles/Styles.css";
-import globalThis from "../Global";
-import { events } from "../ServerCommunication";
 
 export default function PageSelector(data) {
     const setPage = data.setPage;

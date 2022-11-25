@@ -1,4 +1,4 @@
-import "../Styles/Styles.css";
+
 import { useEffect, useState } from "react";
 import { events, responses } from "../ServerCommunication";
 import globalThis from "../Global";
@@ -172,16 +172,16 @@ export default function ReaderSingle(data) {
                             <img src={imageSrc} className="single-reader-image"></img>
                             <div className="social-media-container">
                                 <a href="https://www.facebook.com/Tarocchy-106368828679442/">
-                                    <img src={Facebook} className="social-media-icon"></img>
+                                    <img src={Facebook} alt={"Facebook"} className="social-media-icon"></img>
                                 </a>
                                 <a href="https://www.instagram.com/tarocchy/">
-                                    <img src={Instagram} className="social-media-icon"></img>
+                                    <img alt={"Instagram"} src={Instagram} className="social-media-icon"></img>
                                 </a>
                                 <a href="https://twitter.com/tarocchy">
-                                    <img src={Twitter} className="social-media-icon"></img>
+                                    <img alt={"Twitter"} src={Twitter} className="social-media-icon"></img>
                                 </a>
                                 <a href="mailto:admin@tarocchy.com">
-                                    <img src={Email} className="social-media-icon"></img>
+                                    <img src={Email} alt={ "Email"}   className="social-media-icon"></img>
                                 </a>
                             </div>
                         </div>
@@ -215,9 +215,9 @@ export default function ReaderSingle(data) {
                                 {reviews
                                     .slice(0)
                                     .reverse()
-                                    .map((review) => {
+                                    .map((review , i) => {
                                         return (
-                                            <div className="review">
+                                            <div key={i} className="review">
                                                 <div className="name-rating">
                                                     <div className="review-name">{review.username}</div>
                                                     <StarRatings

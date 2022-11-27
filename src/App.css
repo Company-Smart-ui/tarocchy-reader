@@ -190,6 +190,16 @@ code {
     -moz-appearance: none;
 }
 
+.reader-button-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reader-button-icon svg {
+    margin-right: 10px;
+}
+
 .reader-status-online {
     background-color: green;
 }

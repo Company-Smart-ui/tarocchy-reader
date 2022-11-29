@@ -206,6 +206,18 @@ export default function ReaderSingle(data) {
                             <p className="single-reader-secondary-title">WHAT TO EXPECT</p>
                             <hr></hr>
                             <p>{agentDetails.whattoexpect}</p>
+                            <hr></hr>
+                            <p className="single-reader-secondary-title">VIDEO</p>
+                            <iframe className="single-reader-secondary-video" width="100%" src="https://www.youtube.com/embed/TWjYZvx-rqQ?autoplay=1&mute=1"
+                                srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style>
+                                <a className=single-reader-secondary-video-link href=https://www.youtube.com/embed/TWjYZvx-rqQ?autoplay=1&mute=1><img src=https://tarocchy.com/wp-content/uploads/2022/11/video-preview.jpg alt='LEO - All Zodiac Signs! Your Persons Current Feelings… Right Now.. At This Very Moment!'>
+                                    <span>▶</span>
+                                </a>"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                                title="LEO - All Zodiac Signs! Your Persons Current Feelings… Right Now.. At This Very Moment!">
+                            </iframe>
                         </div>
                     </div>
                     <div className="single-reader-bottom">

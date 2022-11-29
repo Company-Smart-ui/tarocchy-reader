@@ -377,6 +377,10 @@ code {
     padding: 0;
 }
 
+.single-reader-secondary-video {
+    height: 500px;
+}
+
 .social-media-icon {
     width: 6vmin;
 }
@@ -517,6 +521,9 @@ input, textarea {
 
     .single-reader-bottom, .single-reader-container {
         flex-direction: column;
+    }
+    .single-reader-secondary-video {
+        height: 300px;
     }
 }
 

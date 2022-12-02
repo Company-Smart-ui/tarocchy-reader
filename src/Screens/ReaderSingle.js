@@ -27,6 +27,9 @@ export default function ReaderSingle(data) {
     //  console.log(agentDetails);
     //  console.log(agentImage);
 
+   
+
+
     useEffect(() => {
         globalThis.events.addEventListener(events.postReviewResponse, postReviewResponse);
         globalThis.events.addEventListener(events.getReviewsResponse, getReviewsResponse);
@@ -156,6 +159,21 @@ export default function ReaderSingle(data) {
         globalThis.isLoggedIn = false;
     }
 
+    const [field, setPosts] = useState([]);
+    useEffect(() => {
+       fetch('https://tarocchy.com/wp-json/wp/v2/react-settings?_fields=acf&per_page=1')
+       .then((field)=>{
+            return field.json();
+        }
+        )
+        .then((resp)=>{
+            setPosts(resp)
+        })
+    }, []);
+
+    const video = field.map((post) => (`${post.acf['link_on_video']}` ));
+    const [start, setStart] = useState(false);
+
     return (
         <div className="App">
             {agentDetails && (
@@ -208,16 +226,31 @@ export default function ReaderSingle(data) {
                             <p>{agentDetails.whattoexpect}</p>
                             <hr></hr>
                             <p className="single-reader-secondary-title">VIDEO</p>
-                            <iframe className="single-reader-secondary-video" width="100%" src="https://www.youtube.com/embed/TWjYZvx-rqQ?autoplay=1&mute=1"
-                                srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style>
-                                <a className=single-reader-secondary-video-link href=https://www.youtube.com/embed/TWjYZvx-rqQ?autoplay=1&mute=1><img src=https://tarocchy.com/wp-content/uploads/2022/11/video-preview.jpg alt='LEO - All Zodiac Signs! Your Persons Current Feelings… Right Now.. At This Very Moment!'>
-                                    <span>▶</span>
-                                </a>"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen
-                                title="LEO - All Zodiac Signs! Your Persons Current Feelings… Right Now.. At This Very Moment!">
-                            </iframe>
+                            <div className="video-wrap">
+                                {
+                                    !start?<>
+                                        <button onClick={() => {
+                                            setStart(true)
+                                        }} className="video-play">
+                                            <svg height="100%" version="1.1" viewBox="0 0 68 48" width="100%">
+                                                <path className="ytp-large-play-button-bg"
+                                                    d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"
+                                                    fill="#f00"></path>
+                                                <path d="M 45,24 27,14 27,34" fill="#fff"></path>
+                                            </svg>
+                                        </button>
+                                        <img src={"https://i.ytimg.com/vi/"+video+"/hqdefault.jpg"} alt={"youtoobe"}/>
+                                    </>:
+                                    <iframe
+                                    src={"https://www.youtube.com/embed/"+video+"?autoplay=1&mute=1"}
+                                    title="YouTube video player" frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen/>
+                                }
+                            </div>
+                            <hr></hr>
+                            <p>{field.map((post) => (` ${post.acf['text']}` ))}</p>
+                            
                         </div>
                     </div>
                     <div className="single-reader-bottom">

@@ -161,7 +161,7 @@ export default function ReaderSingle(data) {
 
     const [field, setPosts] = useState([]);
     useEffect(() => {
-       fetch('https://tarocchy.com/wp-json/wp/v2/react-settings?_fields=acf&per_page=1')
+       fetch('https://tarocchy.com/wp-json/wp/v2/react-settings?_fields=acf&per_page=3')
        .then((field)=>{
             return field.json();
         }

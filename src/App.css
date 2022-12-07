@@ -349,6 +349,7 @@ code {
     flex-direction: column;
     min-width: 50vw;
     padding: 5vmin;
+    height: 100%;
 }
 
 .single-reader-flex-right p {

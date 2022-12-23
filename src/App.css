@@ -288,17 +288,9 @@ code {
     padding: 5vmin 0;
     min-height: 335px;
     max-height: 350px;
-    overflow: auto;
+    overflow-x: hidden;
+    padding-right: 5px;
     margin: 30px 0 0;
-}
-
-.single-reader-bottom::-webkit-scrollbar {
-    width: 10px;
-    background-color: #ffffff;
-}
-
-.single-reader-bottom::-webkit-scrollbar-thumb {
-    background-color: #f5ff92;
 }
 
 .single-reader-bottom .review .review-hr {
@@ -508,10 +500,10 @@ input, textarea {
 }
 
 .video-wrap {
-    height: 0;
-    padding-bottom: 32%;
+    height: 302px;
     position: relative;
-    width: 58%;
+    max-width: 550px;
+    width: 100%;
     margin: 30px auto;
 }
 
@@ -544,6 +536,12 @@ input, textarea {
     bottom: 0;
     height: 100%;
     width: 100%;
+}
+
+@media screen and (max-width: 860px) {
+    .video-wrap {
+        height: 240px;
+    }
 }
 
 
@@ -579,6 +577,9 @@ input, textarea {
     .video-wrap {
         padding-bottom: 55%;
         width: 100%;
+    }
+    .video-wrap {
+        height: 0;
     }
 }
 
